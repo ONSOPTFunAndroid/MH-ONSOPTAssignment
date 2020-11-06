@@ -118,7 +118,7 @@
         android:lineSpacingExtra="8dp"
         android:padding="15dp"
         android:hint="비밀번호를 입력하세요:)"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:textColor="@color/white"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="@+id/edt_sign_up_name"
