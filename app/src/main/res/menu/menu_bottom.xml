@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_profile"
+        android:enabled="true"
+        android:icon="@drawable/menu"
+        android:title="Me"/>
+
+    <item
+        android:id="@+id/menu_portfolio"
+        android:enabled="true"
+        android:icon="@drawable/menu"
+        android:title="PortFolio" />
+
+    <item
+        android:id="@+id/menu_setting"
+        android:enabled="true"
+        android:icon="@drawable/menu"
+        android:title="Setting" />
+
+</menu>

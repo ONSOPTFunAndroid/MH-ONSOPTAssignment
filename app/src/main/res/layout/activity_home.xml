@@ -4,22 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity"
-    android:background="@drawable/background">
+    tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navi"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="놀랍지만\n'home'입니다."
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:fontFamily="@font/notosanskr_bold"
-        android:textSize="25dp"
-        android:lineSpacingExtra="8dp"
-        android:includeFontPadding="false"
+        android:background="@color/white"
+        app:itemIconSize="20dp"
+        app:itemIconTint="@color/selector_bottom_navi_color"
+        app:itemRippleColor="@color/yellow"
+        app:itemTextColor="@color/selector_bottom_navi_color"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_bottom" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_home"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
