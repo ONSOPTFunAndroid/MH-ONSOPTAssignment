@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<font-family xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <font
+        android:font="@font/notosanskr_black"/>
+
+    <font
+        android:font="@font/notosanskr_bold"/>
+
+    <font
+        android:font="@font/notosanskr_light"/>
+
+    <font
+        android:font="@font/notosanskr_medium"/>
+
+    <font
+        android:font="@font/notosanskr_regular"/>
+
+    <font
+        android:font="@font/notosanskr_thin"/>
+
+</font-family>
