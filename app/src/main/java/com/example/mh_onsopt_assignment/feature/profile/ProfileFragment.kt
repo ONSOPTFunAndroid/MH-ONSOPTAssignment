@@ -31,12 +31,12 @@ class ProfileFragment : Fragment() {
 
         rootView.vp_profile.adapter = viewpagerAdapter
 
-        rootView.tl_profile.setupWithViewPager(vp_profile)
+        rootView.tl_profile.setupWithViewPager(rootView.vp_profile)
         rootView.tl_profile.apply {
             getTabAt(0)?.text = "첫 번째"
             getTabAt(1)?.text = "두 번째"
         }
-        // Inflate the layout for this fragment
+
         return rootView
     }
 
