@@ -339,6 +339,7 @@ rootView.tl_profile.setupWithViewPager(rootView.vp_profile)
 <div span=center>
 <img src="https://user-images.githubusercontent.com/39720852/101917045-1a63ff80-3c0b-11eb-898f-878c7eff48e7.PNG" width = "40%" >
 <img src="https://user-images.githubusercontent.com/39720852/101917047-1b952c80-3c0b-11eb-9419-1e166b0b82b9.PNG" width = "40%" >
+<img src="https://user-images.githubusercontent.com/39720852/101917731-e806d200-3c0b-11eb-8273-253ec16df80f.PNG" width = "30%" >
 </div>
 
 💡 **빈 칸 안내**
@@ -418,11 +419,18 @@ private fun postSignUp(email:String, password:String, name:String){
             }
         })
     }
+
+private fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        toast(ob.getString("message"))
+    }
 ```
 
 - **data class** : 통신을 위한 객체 정의
 - **SoptService** : 식별 URL을 interface로 설계
 - **SoptServiceImpl** : base_url이 있는 실제 구현체 생성
+- showError : error message를 Toast message로 보여줌(ex: 이미 존재하는 이메일 입니다.)
 - SoptServiceImpl를 이용하여 Call 객체를 받아 온 후, enqueue를 호출하여 통신을 비동기적으로 요청.
   CallBack 익명클래스를 선언하여 통신이 실패/성공한 경우를 나눠 구현.
 
