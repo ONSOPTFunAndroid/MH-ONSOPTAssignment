@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mh_onsopt_assignment">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MHONSOPTAssignment">
         <activity android:name=".feature.portfolio.PortfolioDetailActivity"></activity>
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".feature.HomeActivity" />
         <activity android:name=".feature.signup.SignUpActivity"></activity>
         <activity android:name=".feature.signin.SignInActivity">
             <intent-filter>

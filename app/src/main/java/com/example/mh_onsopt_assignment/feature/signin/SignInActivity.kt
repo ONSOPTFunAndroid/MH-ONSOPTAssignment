@@ -4,13 +4,21 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.mh_onsopt_assignment.HomeActivity
+import android.util.Log
+import com.example.mh_onsopt_assignment.feature.HomeActivity
 import com.example.mh_onsopt_assignment.R
 import com.example.mh_onsopt_assignment.common.toast
 import com.example.mh_onsopt_assignment.feature.signup.SignUpActivity
+import com.example.mh_onsopt_assignment.network.SoptServiceImpl
 import com.example.mh_onsopt_assignment.preference.SignInPreference
+import com.example.mh_onsopt_assignment.vo.RequestSignInData
+import com.example.mh_onsopt_assignment.vo.ResponseSignData
 import kotlinx.android.synthetic.main.activity_sign_in.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInActivity : AppCompatActivity() {
     private val REQUEST_CODE_LOGIN_ACTIVITY =1000
@@ -62,11 +70,7 @@ class SignInActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            SignInPreference.setId(this,id)
-            SignInPreference.setPassword(this,password)
-
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            postSignIn(id,password)
         }
     }
 
@@ -80,5 +84,37 @@ class SignInActivity : AppCompatActivity() {
                 edt_sign_in_password.setText(pw)
             }
         }
+    }
+
+    private fun postSignIn(email:String, password:String){
+        val call : Call<ResponseSignData> = SoptServiceImpl.service.postSignIn(
+            RequestSignInData(email = email,password = password)
+        )
+        call.enqueue(object : Callback<ResponseSignData> {
+            override fun onFailure(call: Call<ResponseSignData>, t: Throwable) {
+                // 통신 실패 로직
+                Log.d("명","실패")
+            }
+            override fun onResponse(
+                call: Call<ResponseSignData>,
+                response: Response<ResponseSignData>
+            ) {
+                response.takeIf { it.isSuccessful}
+                    ?.body()
+                    ?.let { it ->
+                        SignInPreference.setId(this@SignInActivity,email)
+                        SignInPreference.setPassword(this@SignInActivity,password)
+
+                        val intent = Intent(this@SignInActivity, HomeActivity::class.java)
+                        startActivity(intent)
+                    } ?: showError(response.errorBody())
+            }
+        })
+    }
+
+    private fun showError(error : ResponseBody?){
+        val e = error ?: return
+        val ob = JSONObject(e.string())
+        toast(ob.getString("message"))
     }
 }
